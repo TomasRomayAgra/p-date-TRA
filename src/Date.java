@@ -71,9 +71,9 @@ public class Date {
 
 	
 	public boolean isSameYear(Date miFecha) {
-		boolean isSameYear;
+		boolean isSameYear=false;
 		if(this.year==miFecha.getYear()) {
-			retorno=true;
+			isSameYear=true;
 		}
 			
 		return isSameYear;
