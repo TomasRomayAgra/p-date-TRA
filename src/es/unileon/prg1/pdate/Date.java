@@ -16,27 +16,51 @@ public class Date {
 	 * Constructor clase date
 	 * 
 	 */
+		/**
+		 * Constructor de la clase date
+		 */
 	public Date() {
-		// TODO Auto-generated constructor stub
 		this.day=1;
 		this.month=1;
 		this.year=1;
 	
 	}
-	public Date(int day,int month,int year) {
-		this.day=day;
-		this.month=month;
-		this.year=year;
+	/**
+	 * Constructor de la clase day con parametros
+	 * @param day
+	 * @param month
+	 * @param year
+	 * @throws DateException 
+	 */
+	public Date(int day,int month,int year) throws DateException {
+		setDay(day);
+		
+		if (month>0&&month<13) {
+			this.month=month;
+		}
+		else {
+			throw new DateException("Error en el mes introducido");
+		}
+		if (year>1) {
+			this.year=year;
+		}
+		else {
+			throw new DateException("Error en el year introducido");
 	}
-
+	}
 	public int getDay() {
 		return day;
 	}
 
 
 
-	public void setDay(int day) {
-		this.day = day;
+	public void setDay(int day) throws DateException {
+		if (day>0&&day<32) {
+			this.day=day;
+		}
+		else {
+			throw new DateException("Error en el dia introducido");
+		}
 	}
 
 
@@ -47,9 +71,13 @@ public class Date {
 
 
 
-	public void setMonth(int month) {
-		this.month = month;
-	}
+	public void setMonth(int month) throws DateException {
+		if (month>0&&month<13) {
+			this.month=month;
+		}
+		else {
+			throw new DateException("Error en el mes introducido");
+	}}
 
 
 
@@ -59,8 +87,13 @@ public class Date {
 
 
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setYear(int year) throws DateException {
+		if (year>1) {
+			this.year=year;
+		}
+		else {
+			throw new DateException("Error en el year introducido");
+	}
 	}
 
 
@@ -72,12 +105,8 @@ public class Date {
 
 	
 	public boolean isSameYear(Date miFecha) {
-		boolean isSameYear=false;
-		if(this.year==miFecha.getYear()) {
-			isSameYear=true;
-		}
-			
-		return isSameYear;
+		
+		return (this.year==miFecha.getYear());
 	}
 	
 }

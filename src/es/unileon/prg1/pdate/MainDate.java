@@ -3,15 +3,15 @@ package es.unileon.prg1.pdate;
 public class MainDate {
 public static void main(String[] args) {
 	
-	Date myFecha1=new Date();
-	Date myFecha2=new Date();
-	if(myFecha1.isSameYear(myFecha2)) {
-		System.out.println("Es el mismo year");
+	try {
+		Date today = new Date(1, 2, 2017);
+		today.setDay(2);
+		System.out.println(today.toString());
+	} catch (DateException e) {
+		System.out.println(e.getMessage());
 	}
-	else {
-		System.out.println("Son years distintos");
-	}
-	System.out.println(myFecha1);
+	
+	
 }
 	
 }
