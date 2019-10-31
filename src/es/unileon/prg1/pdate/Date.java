@@ -1,3 +1,4 @@
+package es.unileon.prg1.pdate;
 /**
  * Clase date para la superacion de la practica 
  * de Prog1 de la clase date
