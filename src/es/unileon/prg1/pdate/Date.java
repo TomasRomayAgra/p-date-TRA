@@ -162,7 +162,7 @@ public boolean checkDayOfTheMonth() {
 	case 10://next
 	case 12:
 		checkDayOfTheMonth=(this.day>0&&this.day<32);
-		break;:
+		break;
 			
 	case 4://next
 	case 6://next
@@ -176,7 +176,38 @@ public boolean checkDayOfTheMonth() {
 	}
 	return checkDayOfTheMonth;
 }
-
+/**
+ * Devuelve la estacion meteorologica en un string
+ * @return
+ */
+public String seasonOfTheYear() {
+	String seasonOfTheYear="";
+	switch(this.month) {
+	case 12://next
+	case 1://next
+	case 2:
+		seasonOfTheYear="Invierno";
+		break;
+	case 3://next
+	case 4://next
+	case 5:
+		seasonOfTheYear="Primavera";
+		break;
+	case 6://next
+	case 7://next
+	case 8:
+		seasonOfTheYear="Verano";
+		break;
+	case 9://next
+	case 10://next
+	case 11:
+		seasonOfTheYear="Otonho";
+		break;
+		
+		
+	}
+	return seasonOfTheYear;
+}
 	
 
 
