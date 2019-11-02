@@ -11,18 +11,17 @@ public class Date {
 	private int day;
 	private int month;
 	private int year;
+	private StringBuilder error= new StringBuilder("");
 	
 	/**
 	 * Constructor clase date
 	 * 
 	 */
-		/**
-		 * Constructor de la clase date
-		 */
 	public Date() {
 		this.day=1;
 		this.month=1;
 		this.year=1;
+	
 	
 	}
 	/**
@@ -34,20 +33,14 @@ public class Date {
 	 */
 	public Date(int day,int month,int year) throws DateException {
 		setDay(day);
+		setMonth(month);
+		setYear(year);
+		if (error.length()>0) {
+			throw new DateException(this.error);
+		}
 		
-		if (month>0&&month<13) {
-			this.month=month;
-		}
-		else {
-			throw new DateException("Error en el mes introducido");
-		}
-		if (year>1) {
-			this.year=year;
-		}
-		else {
-			throw new DateException("Error en el year introducido");
 	}
-	}
+
 	public int getDay() {
 		return day;
 	}
@@ -59,7 +52,7 @@ public class Date {
 			this.day=day;
 		}
 		else {
-			throw new DateException("Error en el dia introducido");
+			this.error.append("Error en el dia introducido");
 		}
 	}
 
@@ -76,7 +69,7 @@ public class Date {
 			this.month=month;
 		}
 		else {
-			throw new DateException("Error en el mes introducido");
+			this.error.append("Error en el mes introducido");
 	}}
 
 
@@ -92,10 +85,99 @@ public class Date {
 			this.year=year;
 		}
 		else {
-			throw new DateException("Error en el year introducido");
+			this.error.append("Error en el year introducido");
 	}
 	}
+/**
+ * 
+ * @param miFecha
+ * @return
+ */
+	public boolean isSameYear(Date miFecha) {
+		
+		return (this.year==miFecha.getYear());
+	}
+	
+	public boolean isSameMonth(Date miFecha) {
+		return (this.month==miFecha.getMonth());
+	}
+	
+	public boolean isSameDay(Date miFecha){
+		return (this.day==miFecha.getDay());
+	}
+	
+	public boolean isSame(Date miFecha) {
+		return (isSameDay(miFecha)&&isSameMonth(miFecha)&&isSameYear(miFecha));
+	}
+	public String nameOfMonth() {
+		String nameOfMonth="";
+		switch(this.month) {
+		case 1:
+			nameOfMonth="Enero";
+			break;
+		case 2:
+			nameOfMonth="Febrero";
+			break;
+		case 3:
+			nameOfMonth="Marzo";
+			break;
+		case 4:
+			nameOfMonth="Abril";
+			break;
+		case 5:
+			nameOfMonth="Mayo";
+			break;
+		case 6:
+			nameOfMonth="Junio";
+			break;
+		case 7:
+			nameOfMonth="Julio";
+			break;
+		case 8:
+			nameOfMonth="Agosto";
+			break;
+		case 9:
+			nameOfMonth="Septiembre";
+			break;
+		case 10:
+			nameOfMonth="Octubre";
+			break;
+		case 11:
+			nameOfMonth="Noviembre";
+			break;
+		case 12:
+			nameOfMonth="Diciembre";
+			break;
+		}
+		return nameOfMonth;
+	}
+public boolean checkDayOfTheMonth() {
+	boolean checkDayOfTheMonth=false;
+	switch(this.month) {
+	case 1://next
+	case 3://next
+	case 5://next
+	case 7://next
+	case 8://next
+	case 10://next
+	case 12:
+		checkDayOfTheMonth=(this.day>0&&this.day<32);
+		break;:
+			
+	case 4://next
+	case 6://next
+	case 9://next
+	case 11:
+		checkDayOfTheMonth=(this.day>0&&this.day<31);
+		break;
+	case 2:
+		checkDayOfTheMonth=(this.day>0&&this.day<29);
+		break;
+	}
+	return checkDayOfTheMonth;
+}
 
+	
 
 
 	@Override
@@ -103,10 +185,5 @@ public class Date {
 		return "Date [day=" + day + ", month=" + month + ", year=" + year + "]";
 	}
 
-	
-	public boolean isSameYear(Date miFecha) {
-		
-		return (this.year==miFecha.getYear());
-	}
 	
 }
