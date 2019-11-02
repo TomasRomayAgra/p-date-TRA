@@ -11,7 +11,7 @@ public class Date {
 	private int day;
 	private int month;
 	private int year;
-	private StringBuilder error= new StringBuilder("");
+
 	
 	/**
 	 * Constructor clase date
@@ -32,31 +32,43 @@ public class Date {
 	 * @throws DateException 
 	 */
 	public Date(int day,int month,int year) throws DateException {
-		setDay(day);
+		//StringBuilder error=new StringBuilder("");
+	
+	/**try {
 		setMonth(month);
-		setYear(year);
+	}
+	catch(DateException e) {
+		
 		if (error.length()>0) {
-			throw new DateException(this.error);
+			error.append(e.getMessage());
+		}
+		else{
+		try {
+			setMonth(month);
+		}
+		catch(DateException e) {
+		
+		if (error.length()>0) {
+				error.append(e.getMessage());
+			}
 		}
 		
+		
 	}
-
+	*/
+	}
+	
 	public int getDay() {
 		return day;
 	}
-
-
-
-	public void setDay(int day) throws DateException {
+public void setDay(int day) throws DateException {
 		if (day>0&&day<32) {
 			this.day=day;
 		}
 		else {
-			this.error.append("Error en el dia introducido");
+			//this.error.append("Error en el dia introducido");
 		}
 	}
-
-
 
 	public int getMonth() {
 		return month;
@@ -69,7 +81,7 @@ public class Date {
 			this.month=month;
 		}
 		else {
-			this.error.append("Error en el mes introducido");
+			//this.error.append("Error en el mes introducido");
 	}}
 
 
@@ -85,7 +97,7 @@ public class Date {
 			this.year=year;
 		}
 		else {
-			this.error.append("Error en el year introducido");
+			//this.error.append("Error en el year introducido");
 	}
 	}
 /**
@@ -151,8 +163,8 @@ public class Date {
 		}
 		return nameOfMonth;
 	}
-public boolean checkDayOfTheMonth() {
-	boolean checkDayOfTheMonth=false;
+public boolean areDaysOfTheMonthRight() {
+	boolean areDaysOfTheMonthRight=false;
 	switch(this.month) {
 	case 1://next
 	case 3://next
@@ -161,20 +173,20 @@ public boolean checkDayOfTheMonth() {
 	case 8://next
 	case 10://next
 	case 12:
-		checkDayOfTheMonth=(this.day>0&&this.day<32);
+		areDaysOfTheMonthRight=(this.day>0&&this.day<32);
 		break;
 			
 	case 4://next
 	case 6://next
 	case 9://next
 	case 11:
-		checkDayOfTheMonth=(this.day>0&&this.day<31);
+		areDaysOfTheMonthRight=(this.day>0&&this.day<31);
 		break;
 	case 2:
-		checkDayOfTheMonth=(this.day>0&&this.day<29);
+		areDaysOfTheMonthRight=(this.day>0&&this.day<29);
 		break;
 	}
-	return checkDayOfTheMonth;
+	return areDaysOfTheMonthRight;
 }
 /**
  * Devuelve la estacion meteorologica en un string
@@ -208,7 +220,39 @@ public String seasonOfTheYear() {
 	}
 	return seasonOfTheYear;
 }
+public int monthsUntilEndOfYear() {
+	int monthsUntilEndOfYear;
+	monthsUntilEndOfYear=(12-this.month);
+	return monthsUntilEndOfYear;
+}
 	
+public int numberOfDaysInMonth() {
+	int numberOfDaysInMonth=0;
+	switch(this.month) {
+	case 1://next
+	case 3://next
+	case 5://next
+	case 7://next
+	case 8://next
+	case 10://next
+	case 12:
+		numberOfDaysInMonth=31;
+		break;
+			
+	case 4://next
+	case 6://next
+	case 9://next
+	case 11:
+		numberOfDaysInMonth=30;
+		break;
+	case 2:
+		numberOfDaysInMonth=28;
+		break;
+	}
+	return numberOfDaysInMonth;
+}
+
+
 
 
 	@Override
