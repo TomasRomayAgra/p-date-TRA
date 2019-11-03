@@ -275,7 +275,34 @@ public int daysSinceJanuaryFirst() throws DateException {
 	return daysSinceJanuaryFirst;
 }
 
-
+public int numberOfAttempsWhile()throws DateException{
+	int numberOfAttempsWhile=0;
+	Date bucle=new Date(1,1,(this.year+1));//La fecha exirá pero no será inmediatamente igual a la otra fecha
+	int day;
+	int month;
+	int year;
+	while(!(this.isSame(bucle))) {
+		bucle.setMonth((int)(Math.random()*12)+1);
+		bucle.setDay((int)(Math.random()*bucle.numberOfDaysInMonth())+1);
+		year=this.year;
+		numberOfAttempsWhile++;
+	}
+	return numberOfAttempsWhile;
+}
+public int numberOfAttempsDoWhile()throws DateException{
+	int numberOfAttempsDoWhile=0;
+	Date bucle=new Date(1,1,1);
+	int day;
+	int month;
+	int year;
+	do {
+		bucle.setMonth((int)(Math.random()*12)+1);
+		bucle.setDay((int)(Math.random()*bucle.numberOfDaysInMonth())+1);
+		year=this.year;
+		numberOfAttempsDoWhile++;
+	}while(!(this.isSame(bucle)));
+	return numberOfAttempsDoWhile;
+}
 
 
 
