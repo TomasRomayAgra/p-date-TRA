@@ -264,7 +264,16 @@ public String monthsWithSameNumberOfDays() throws DateException {
 	 }
 		return monthsWithSameNumberOfDays.toString();
 	}
+public int daysSinceJanuaryFirst() throws DateException {
+	int daysSinceJanuaryFirst=0;
 
+	for(int i=1;i<this.month;i++) {
+		Date bucle=new Date(1,i,1);
+		daysSinceJanuaryFirst+=bucle.numberOfDaysInMonth();
+	}
+	daysSinceJanuaryFirst=daysSinceJanuaryFirst+this.day-1;
+	return daysSinceJanuaryFirst;
+}
 
 
 
