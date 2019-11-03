@@ -32,30 +32,23 @@ public class Date {
 	 * @throws DateException 
 	 */
 	public Date(int day,int month,int year) throws DateException {
-		//StringBuilder error=new StringBuilder("");
-	
-	/**try {
-		setMonth(month);
-	}
-	catch(DateException e) {
-		
-		if (error.length()>0) {
-			error.append(e.getMessage());
+		StringBuilder error=new StringBuilder("");
+		if (month<1||month>12) {
+			error.append("Error en el mes introducido, debe estar entre 1 y 12.");
 		}
-		else{
-		try {
-			setMonth(month);
+		else {
+			this.month=month;
 		}
-		catch(DateException e) {
-		
-		if (error.length()>0) {
-				error.append(e.getMessage());
-			}
+		if (day<1||day>this.numberOfDaysInMonth()) {
+			error.append("Error en el dia introducido, debe estar entre 1 y "+this.numberOfDaysInMonth());
 		}
-		
-		
-	}
-	*/
+		if (year<1) {
+			error.append("Error en el anho introducido, debe ser mayor que 1");
+		}
+		else {
+			this.day=day;
+			this.year=year;
+		}
 	}
 	
 	public int getDay() {
@@ -66,7 +59,7 @@ public void setDay(int day) throws DateException {
 			this.day=day;
 		}
 		else {
-			//this.error.append("Error en el dia introducido");
+			throw new DateException("Error en el dia introducido");
 		}
 	}
 
@@ -81,7 +74,7 @@ public void setDay(int day) throws DateException {
 			this.month=month;
 		}
 		else {
-			//this.error.append("Error en el mes introducido");
+			throw new DateException("Error en el mes introducido, debe estar entre 1 y 12.");
 	}}
 
 
@@ -97,7 +90,7 @@ public void setDay(int day) throws DateException {
 			this.year=year;
 		}
 		else {
-			//this.error.append("Error en el year introducido");
+			throw new DateException("Error en el year introducido");
 	}
 	}
 /**
@@ -251,6 +244,15 @@ public int numberOfDaysInMonth() {
 	}
 	return numberOfDaysInMonth;
 }
+
+public String datesUntilEndOfMonth() {
+	StringBuffer datesUntilEndOfMonth = new StringBuffer();
+	for (int i = this.day; i < this.numberOfDaysInMonth(); i++) {
+		datesUntilEndOfMonth.append("Date [day=" + i + ", month=" + month + ", year=" + year + "]\n");
+	}
+	return datesUntilEndOfMonth.toString();
+}
+
 
 
 
