@@ -252,6 +252,19 @@ public String datesUntilEndOfMonth() {
 	}
 	return datesUntilEndOfMonth.toString();
 }
+public String monthsWithSameNumberOfDays() throws DateException {
+	StringBuffer monthsWithSameNumberOfDays=new StringBuffer();
+	for (int i=1;i<=12;i++) {
+	
+		Date bucle=new Date(i,1,1);
+		if((bucle.numberOfDaysInMonth()==this.numberOfDaysInMonth())&&(i!=this.month)) {
+			
+			monthsWithSameNumberOfDays.append(this.nameOfMonth()+ ", ");
+		}
+	 }
+		return monthsWithSameNumberOfDays.toString();
+	}
+
 
 
 
