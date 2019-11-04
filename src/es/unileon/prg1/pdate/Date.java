@@ -50,11 +50,14 @@ public class Date {
 			this.year=year;
 		}
 	}
-	
+	/**
+	 * geters y seters
+	 * @return
+	 */
 	public int getDay() {
 		return day;
 	}
-public void setDay(int day) throws DateException {
+	public void setDay(int day) throws DateException {
 		if (day>0&&day<32) {
 			this.day=day;
 		}
@@ -86,14 +89,14 @@ public void setDay(int day) throws DateException {
 
 
 	public void setYear(int year) throws DateException {
-		if (year>1) {
+		if (year>0) {
 			this.year=year;
 		}
 		else {
 			throw new DateException("Error en el year introducido");
 	}
 	}
-/**
+/**Comprueba si los años de dos fechas son iguales
  * 
  * @param miFecha
  * @return
@@ -102,18 +105,37 @@ public void setDay(int day) throws DateException {
 		
 		return (this.year==miFecha.getYear());
 	}
+	/**Comprueba si los meses de dos fechas son iguales
+	 * 
+	 * @param miFecha
+	 * @return
+	 */
 	
 	public boolean isSameMonth(Date miFecha) {
 		return (this.month==miFecha.getMonth());
 	}
+	/**Comprueba si los dias de dos fechas son iguales
+	 * 
+	 * @param miFecha
+	 * @return
+	 */
 	
 	public boolean isSameDay(Date miFecha){
 		return (this.day==miFecha.getDay());
 	}
+	/**Comprueba si dos fechas son iguales
+	 * 
+	 * @param miFecha
+	 * @return
+	 */
 	
 	public boolean isSame(Date miFecha) {
 		return (isSameDay(miFecha)&&isSameMonth(miFecha)&&isSameYear(miFecha));
 	}
+	/**
+	 * Devuelve en un string el nombre del mes de la fecha en letra
+	 * @return
+	 */
 	public String nameOfMonth() {
 		String nameOfMonth="";
 		switch(this.month) {
@@ -156,6 +178,10 @@ public void setDay(int day) throws DateException {
 		}
 		return nameOfMonth;
 	}
+	/**
+	 * Devuelve verdadero si el numero de dias que tiene el mes son correctos
+	 * @return
+	 */
 public boolean areDaysOfTheMonthRight() {
 	boolean areDaysOfTheMonthRight=false;
 	switch(this.month) {
@@ -212,13 +238,21 @@ public String seasonOfTheYear() {
 		
 	}
 	return seasonOfTheYear;
+	
 }
+/**
+ * Devuelve el numero de meses que faltan para que acabe el anho
+ * @return
+ */
 public int monthsUntilEndOfYear() {
 	int monthsUntilEndOfYear;
 	monthsUntilEndOfYear=(12-this.month);
 	return monthsUntilEndOfYear;
 }
-	
+	/**
+	 * Devuelve el numero de dias que tiene un mes
+	 * @return
+	 */
 public int numberOfDaysInMonth() {
 	int numberOfDaysInMonth=0;
 	switch(this.month) {
@@ -244,7 +278,10 @@ public int numberOfDaysInMonth() {
 	}
 	return numberOfDaysInMonth;
 }
-
+/**
+ * Devuelve un string con todas las fechas desde la fecha sobre la que se aplica hasta el final del mes
+ * @return
+ */
 public String datesUntilEndOfMonth() {
 	StringBuffer datesUntilEndOfMonth = new StringBuffer();
 	for (int i = this.day; i < this.numberOfDaysInMonth(); i++) {
@@ -252,6 +289,11 @@ public String datesUntilEndOfMonth() {
 	}
 	return datesUntilEndOfMonth.toString();
 }
+/**
+ * Devuelve el nombre de los meses que tienen el mismo numero de dias que el mes de la fecha
+ * @return
+ * @throws DateException
+ */
 public String monthsWithSameNumberOfDays() throws DateException {
 	StringBuffer monthsWithSameNumberOfDays=new StringBuffer();
 	for (int i=1;i<=12;i++) {
@@ -264,6 +306,11 @@ public String monthsWithSameNumberOfDays() throws DateException {
 	 }
 		return monthsWithSameNumberOfDays.toString();
 	}
+/**
+ * Devuelve el numero de dias que han pasado desde el primer dia del anho hasta la fecha
+ * @return
+ * @throws DateException
+ */
 public int daysSinceJanuaryFirst() throws DateException {
 	int daysSinceJanuaryFirst=0;
 
@@ -274,7 +321,11 @@ public int daysSinceJanuaryFirst() throws DateException {
 	daysSinceJanuaryFirst=daysSinceJanuaryFirst+this.day-1;
 	return daysSinceJanuaryFirst;
 }
-
+/**
+ * Devuelve el numero de intentos que le ha costado generar aleatoriamente la fecha sobre la que se aplica el metodo
+ * @return
+ * @throws DateException
+ */
 public int numberOfAttempsWhile()throws DateException{
 	int numberOfAttempsWhile=0;
 	Date bucle=new Date(1,1,(this.year+1));//La fecha exirá pero no será inmediatamente igual a la otra fecha
@@ -289,6 +340,11 @@ public int numberOfAttempsWhile()throws DateException{
 	}
 	return numberOfAttempsWhile;
 }
+/**
+ * Devuelve el numero de intentos que le ha costado generar aleatoriamente la fecha sobre la que se aplica el metodo
+ * @return
+ * @throws DateException
+ */
 public int numberOfAttempsDoWhile()throws DateException{
 	int numberOfAttempsDoWhile=0;
 	Date bucle=new Date(1,1,1);
@@ -303,9 +359,60 @@ public int numberOfAttempsDoWhile()throws DateException{
 	}while(!(this.isSame(bucle)));
 	return numberOfAttempsDoWhile;
 }
+/**
+ * Devuelve en un string el nombre del dia 1=lunes 2=martes ....
+ * @param day
+ * @return
+ * @throws DateException
+ */
+public String nameOfTheDay(int day)throws DateException{
+	String nameOfTheDay="";
+	
+	switch(day) {
+		case 1:
+			nameOfTheDay="Lunes";
+			break;
+		case 2:
+			nameOfTheDay="Martes";
+			break;
+		case 3:
+			nameOfTheDay="Miercoles";
+			break;
+		case 4:
+			nameOfTheDay="Jueves";
+			break;
+		case 5:
+			nameOfTheDay="Viernes";
+			break;
+		case 6:
+			nameOfTheDay="Sabado";
+			break;
+		case 7:
+			nameOfTheDay="Domingo";
+			break;
+		default:
+			throw new DateException("Error en el dia de la semana introducido, tiene que estar entre 1 y 7");
+			
+	}
+	
+	return nameOfTheDay;
+}
+/**
+ * Calcula el dia de la semana de la fecha sabiendo el dia de la semana del primer dia del anho
+ * @param day
+ * @return
+ * @throws DateException
+ */
+public String dayOfTheWeek(int day)throws DateException {
+	int dayOfTheWeek;
+	dayOfTheWeek=((this.daysSinceJanuaryFirst()%7+day)%7);
+	return nameOfTheDay(dayOfTheWeek);
+}
 
 
-
+/**
+ * Devuelve en un string la fecha
+ */
 	@Override
 	public String toString() {
 		return "Date [day=" + day + ", month=" + month + ", year=" + year + "]";
